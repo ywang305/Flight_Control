@@ -162,8 +162,7 @@ main(int argc, char** argv)
   std::string availableCommands = "| Available commands:          |\n";
               availableCommands +="| [task1] Position Ctrl Sample |\n";
               availableCommands +="| [task2] Position Ctrl Cmd    |\n";
-              availableCommands +="| [task3] Attitude Ctrl Sample |\n";
-              availableCommands +="| [task4] Attitude Ctrl Cmd    |\n";
+              availableCommands +="| [task3] Attitude Ctrl Cmd    |\n";
   std::cout << availableCommands;
 
   std::vector<std::string> commands{"task1", "task2"};
@@ -177,10 +176,13 @@ main(int argc, char** argv)
   Task task(vehicle);
 
   if(command == "task1") {
-      task.PositionCtrSample();
+    task.PositionCtrSample();
   }
   else if(command == "task2") {
-      task.PositionCtrInteractive();
+    task.PositionCtrInteractive();
+  }
+  else if(command == "task3") {
+    task.AttitudeCtrInteractive();
   }
 
   return 0;
