@@ -48,6 +48,7 @@ public:
 
   void PositionCtrSample();
   void PositionCtrInteractive();
+  void AttitudeCtrInteractive();
   
 private:
   Vehicle* vehicle;
@@ -67,10 +68,11 @@ void Task::PositionCtrSample() {
 }
 
 void Task::PositionCtrInteractive() {
-  std::string info = "[x y z yaw], input each offset, default 0\n";
-  std::cout << info;
+  std::string info = "|[x y z yaw] to offset, [:q] to quit    |\n";
 
   monitoredTakeoff(vehicle);
+
+  std::cout << info;
   std::string command;
   while(std::getline(std::cin, command)) {
     if(command==":q") break;
@@ -78,9 +80,30 @@ void Task::PositionCtrInteractive() {
     float x=0, y=0, z=0, yaw=0;
     ss >> x >> y >> z >> yaw;
     moveByPositionOffset(vehicle, x, y, z, yaw);
+    std::cout << info;
   }
   monitoredLanding(vehicle);
 }
+
+void AttitudeCtrInteractive() {
+  std::string info = "|[roll pitch yaw] to offset, [:q] to quit    |\n";
+
+  monitoredTakeoff(vehicle);
+
+  std::cout << info;
+  std::string command;
+  while(std::getline(std::cin, command)) {
+    if(command==":q") break;
+    std::stringstream ss(command);
+    float r=0, p=0, y=0;
+    ss >> r >> p >> y;
+    attitudeControl(r, p, y);
+    std::cout << info;
+  }
+  monitoredLanding(vehicle);
+}
+
+
 
 void Task::attitudeControl(float rollDesired, float pitchDesired, float yawDesired, int timeoutInMs, float thresholdInDeg) {
     // Wait for data to come in
