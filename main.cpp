@@ -85,7 +85,7 @@ void Task::PositionCtrInteractive() {
   monitoredLanding(vehicle);
 }
 
-void AttitudeCtrInteractive() {
+void Task::AttitudeCtrInteractive() {
   std::string info = "|[roll pitch yaw] to offset, [:q] to quit    |\n";
 
   monitoredTakeoff(vehicle);
