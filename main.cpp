@@ -160,29 +160,28 @@ main(int argc, char** argv)
 
   // Display interactive prompt
   std::string availableCommands = "| Available commands:          |\n";
-              availableCommands +="| [task1] Position Ctrl Sample |\n";
-              availableCommands +="| [task2] Position Ctrl Cmd    |\n";
-              availableCommands +="| [task3] Attitude Ctrl Cmd    |\n";
+              availableCommands +="| [0] quit!                    |\n";
+              availableCommands +="| [1] Position Ctrl Sample     |\n";
+              availableCommands +="| [2] Position Ctrl Cmd        |\n";
+              availableCommands +="| [3] Attitude Ctrl Cmd        |\n";
   std::cout << availableCommands;
 
-  std::vector<std::string> commands{"task1", "task2"};
-
-  std::string command;
-  while(!std::getline(std::cin, command)
-        || commands.end()==std::find(commands.begin(), commands.end(), command)) {
-    std::cout << "Error command !\n" + availableCommands;
-  }
-  
   Task task(vehicle);
-
-  if(command == "task1") {
-    task.PositionCtrSample();
-  }
-  else if(command == "task2") {
-    task.PositionCtrInteractive();
-  }
-  else if(command == "task3") {
-    task.AttitudeCtrInteractive();
+  int seq;
+  while(std::cin >> seq && seq>0) {
+    switch(seq) {
+      case 1: 
+        task.PositionCtrSample();
+        break;
+      case 2:
+        task.PositionCtrInteractive();
+        break;
+      case 3:
+        task.AttitudeCtrInteractive();
+        break;
+      default:
+        break;
+    }
   }
 
   return 0;
