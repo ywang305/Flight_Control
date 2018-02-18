@@ -1,2 +1,2 @@
 # FlightControl
-![alt text](https://photos.app.goo.gl/wXRNbWqqmDFEc0EL2)
+![alt text](https://photos.app.goo.gl/CCSbC7vnaaIcl6Ym1)
